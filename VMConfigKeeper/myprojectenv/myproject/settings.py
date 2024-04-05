@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'temp_cpu',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -43,7 +44,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['/disk/dev/VMConfigKeeper/myprojectenv/myproject/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
