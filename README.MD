@@ -2,7 +2,7 @@
 https://nas.autonet.keenetic.link/
 
 
-Изменения в Vagrangfile:
+Изменения в Vagrantfile:
 ```
 Vagrant.configure("2") do |config|
 
