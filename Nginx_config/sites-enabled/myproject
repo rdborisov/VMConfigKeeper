@@ -1,0 +1,28 @@
+events{}
+
+
+http {
+    include /etc/nginx/mime.types;
+
+
+
+server {
+    listen 80;
+    server_name nas.autonet.keenetic.link;
+	
+    location = /favicon.ico { 
+		access_log off; 
+		log_not_found off; 
+    }
+	location /static/ {
+	        root /disk/dev/VMConfigKeeper/myprojectenv;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+
+}
+
+}

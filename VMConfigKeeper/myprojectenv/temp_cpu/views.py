@@ -12,6 +12,6 @@ def index(request):
     data = {"CPU_temp": str(temp['CPU_temp']), "GPU_temp" : str(temp['GPU_temp']), "uptime" : str(temp['uptime'])}
     return TemplateResponse(request, "temp_cpu/home.html", data)
     
-#def about(request):
- #   return HttpResponse("<h2>Главная</h2>")
+def about(request):
+    return TemplateResponse(request, "temp_cpu/about.html")
 
