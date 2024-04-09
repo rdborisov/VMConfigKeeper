@@ -1,7 +1,6 @@
 Проект располагается по адресу:
 https://nas.autonet.keenetic.link/
 
-
 Изменения в Vagrantfile:
 ```
 Vagrant.configure("2") do |config|

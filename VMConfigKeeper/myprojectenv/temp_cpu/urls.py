@@ -3,8 +3,9 @@ from . import views
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', views.index),
-    path('about/', TemplateView.as_view(template_name="temp_cpu/about.html")),
-    path('contacts/', TemplateView.as_view(template_name="temp_cpu/contacts.html"))
-
+    path('', views.index, name='home'),
+    path('about/', views.about, name='about'),
+    path('contacts/', views.contacts, name='contacts'),
+    path('login/', views.login, name='login'),
+    path('file/', views.repos, name='repos'),
     ]
