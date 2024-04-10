@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('file/', views.repos, name='repos'),
     path('post/<slug:post_slug>', views.show_post, name='post'),
+    path('addpost/', views.addpost, name='addpost'),
     ]

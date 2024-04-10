@@ -12,7 +12,9 @@ from .models import vmconfig
 menu = [{'title' : "О проекте", 'url_name' : 'about'},
         {'title' : "Контакты", 'url_name' : 'contacts'},
         {'title' : "Репозиторий", 'url_name' : 'repos'},
-        {'title' : "Личный кабинет", 'url_name' : 'login'}      
+        {'title' : "Добавить пост", 'url_name' : 'addpost'},
+        {'title' : "Личный кабинет", 'url_name' : 'login'},
+        
         ]
 
 def index(request):
@@ -59,6 +61,16 @@ def login(request):
     
     return render(request, "temp_cpu/login.html", data)
 
+def addpost(request):
+
+    data = {'title': "addpost",
+            'title_name': "Добавление публичной конфигурации",
+            'menu' : menu
+            }
+    
+    return render(request, "temp_cpu/addpost.html", data)
+
+
 def show_post(request, post_slug):
     post = get_object_or_404(vmconfig, slug=post_slug)
 
@@ -84,3 +96,4 @@ def repos(request):
             }
     
     return render(request, "temp_cpu/repos.html", data)
+
