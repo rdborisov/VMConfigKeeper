@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.template.defaultfilters import slugify
 import json
 from django.template.response import TemplateResponse
-
+from .forms import AddPostForm
 from .models import vmconfig
 
 
@@ -61,11 +61,28 @@ def login(request):
     
     return render(request, "temp_cpu/login.html", data)
 
-def addpost(request):
+def uploads(file):
+    with open(f"uploads/{file.name}", "wb+") as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
 
+
+
+def addpost(request):
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+       #uploads(request.FILES['file_upload'])
+        if form.is_valid():
+            
+            form.save()
+            return redirect('home')
+    else:
+        form = AddPostForm()
+        
     data = {'title': "addpost",
             'title_name': "Добавление публичной конфигурации",
-            'menu' : menu
+            'menu' : menu,
+            'form' : form
             }
     
     return render(request, "temp_cpu/addpost.html", data)
