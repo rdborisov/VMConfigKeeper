@@ -8,10 +8,8 @@ from django.template.response import TemplateResponse
 from .forms import AddPostForm
 from .models import vmconfig
 
-
 menu = [{'title' : "О проекте", 'url_name' : 'about'},
         {'title' : "Контакты", 'url_name' : 'contacts'},
-        {'title' : "Репозиторий", 'url_name' : 'repos'},
         {'title' : "Добавить пост", 'url_name' : 'addpost'},
         {'title' : "Личный кабинет", 'url_name' : 'login'},
         
@@ -61,19 +59,14 @@ def login(request):
     
     return render(request, "temp_cpu/login.html", data)
 
-def uploads(file):
-    with open(f"uploads/{file.name}", "wb+") as destination:
-        for chunk in file.chunks():
-            destination.write(chunk)
-
 
 
 def addpost(request):
+    
+
     if request.method == 'POST':
-        form = AddPostForm(request.POST)
-       #uploads(request.FILES['file_upload'])
+        form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
-            
             form.save()
             return redirect('home')
     else:
@@ -91,11 +84,14 @@ def addpost(request):
 def show_post(request, post_slug):
     post = get_object_or_404(vmconfig, slug=post_slug)
 
+    all_files = vmconfig.objects.all()
+
     data = {
         'title' : post.title,
         'title_name': post.title,
         'menu' : menu,
         'post': post,
+        'all_files': all_files,
     }
 
     return render(request, 'temp_cpu/post.html', data)

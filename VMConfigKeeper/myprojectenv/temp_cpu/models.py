@@ -9,7 +9,11 @@ class vmconfig(models.Model):
     content = models.TextField(blank=True, null=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
-    file = models.FileField(null=True, upload_to='uploads_model')
+    file = models.FileField(upload_to='uploads_model/',
+                            default=None,
+                            blank=True,
+                            null=True,
+                            verbose_name='Файл конфигурации')
     is_published = models.BooleanField(default=True)
     
 
@@ -18,3 +22,5 @@ class vmconfig(models.Model):
     
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
+    
+
